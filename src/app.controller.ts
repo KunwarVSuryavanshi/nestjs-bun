@@ -34,11 +34,16 @@ export class AppController {
 
   @Get('redirect')
   @Redirect('https:github.com/KunwarVSuryavanshi', 301)
-  getRedirect(@Query('youtube') query) {
-    console.log('Query--->', query)
+  getRedirect(@Query('youtube') query, @Query('anilist') anilist) {
+    console.log('Query--->', query, anilist)
     if (query === 'yes') {
       return {
         url: 'https://www.youtube.com/'
+      }
+    }
+    if (anilist) {
+      return {
+        url: 'https://anilist.co'
       }
     }
   }
