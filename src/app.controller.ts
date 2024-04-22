@@ -1,5 +1,7 @@
-import { Controller, Get, Param, Query, Redirect, Req } from '@nestjs/common';
+import { Body, Controller, Get, HttpStatus, Param, Post, Put, Query, Redirect, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
+import { CreateCatDTO } from './app.dto';
+import { Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -11,7 +13,9 @@ export class AppController {
   }
 
   @Get('cat')
-  greetCat(@Req() request: Request): string {
+  greetCat(@Req() request: Request, @Res({ passthrough: true }) res: Response) {
+    // tinckering with res won't work without the passthrough
+    res.status(HttpStatus.CREATED)
     return this.appService.greetCat(request)
   }
 
@@ -49,7 +53,20 @@ export class AppController {
   }
 
   @Get('promise')
-  getPromise(): Promise<string>{
+  getPromise(): Promise<string> {
     return this.appService.getPromise()
+  }
+
+  @Post('createCat')
+  async createCat(@Body() createCatDto: CreateCatDTO) {
+    //interface can be used here as well, but it will be lost once it is compiled to JS during runtime 🏃‍♂️
+    // whereas the class CreateCatDTO will be still there during compile time ⚡
+    console.log('Body for create car --->', createCatDto)
+    return 'This route created a 🐈‍⬛ for you ✨!'
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCatDto: CreateCatDTO) {
+    return `This action updates a #${id} cat`;
   }
 }
