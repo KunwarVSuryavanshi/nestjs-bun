@@ -7,6 +7,8 @@ import { Response } from 'express';
 export class AppController {
   constructor(private readonly appService: AppService) { }
 
+  private appservice2 = new AppService()
+
   @Get()
   getHello(): string {
     return this.appService.getHello();
@@ -68,5 +70,10 @@ export class AppController {
   @Put(':id')
   update(@Param('id') id: string, @Body() updateCatDto: CreateCatDTO) {
     return `This action updates a #${id} cat`;
+  }
+
+  @Get('/method')
+  getMethod() {
+    console.log('Method', this.appservice2.findCat())
   }
 }

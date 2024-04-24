@@ -1,7 +1,12 @@
 import { Injectable, ParamData } from '@nestjs/common';
+import { Cat } from './interface/app.interface';
+import { CreateCatDTO } from './app.dto';
 
 @Injectable()
 export class AppService {
+  private readonly cats: Cat[] = []
+  private readonly cats2: CreateCatDTO[] = []
+
   getHello(): string {
     return 'Hello World!';
   }
@@ -29,5 +34,14 @@ export class AppService {
         res('Promise resolved after 4000ms')
       }, 4000)
     })
+  }
+
+  createCat(argCat: Cat) {
+    this.cats.push(argCat)
+    this.cats2.push(argCat)
+  }
+
+  findCat(): Cat[] {
+    return this.cats
   }
 }
