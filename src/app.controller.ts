@@ -2,10 +2,12 @@ import { Body, Controller, Get, HttpStatus, Param, Post, Put, Query, Redirect, R
 import { AppService } from './app.service';
 import { CreateCatDTO } from './app.dto';
 import { Response } from 'express';
+import { SchedulerRegistry } from '@nestjs/schedule';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) { }
+
 
   private appservice2 = new AppService()
 

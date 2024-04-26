@@ -8,7 +8,7 @@ export class AppService {
   private readonly cats2: CreateCatDTO[] = []
 
   getHello(): string {
-    return 'Hello World!';
+    return 'Hello World! 👋';
   }
 
   greetCat(request: Request): string {
