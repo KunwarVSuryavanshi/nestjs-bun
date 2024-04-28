@@ -3,15 +3,16 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CronExampleModule } from './CronExample/CronExample.module';
 import { SchedulerRegistry } from '@nestjs/schedule';
+import { GlobalModule } from './ME/GlobalModule/GlobalModule.module';
 
 @Module({
-  imports: [CronExampleModule],
+  imports: [CronExampleModule, GlobalModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule{ 
+export class AppModule {
   // constructor(private schedule: SchedulerRegistry) { }
-  
+
   // onModuleInit() {
   //   const job = this.schedule.getCronJobs();
   //   if (job) {
