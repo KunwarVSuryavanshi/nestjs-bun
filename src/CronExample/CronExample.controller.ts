@@ -18,17 +18,17 @@ export class CronExampleController {
   }
 
   // @Cron('5 * * * * *') // sec min hour day month week ---> 5th second of every min
-  @Cron(CronExpression.EVERY_5_SECONDS, {
+  @Cron(CronExpression.EVERY_30_SECONDS, {
     name: 'logger',
     // timeZone: 'IST'
   })
   handleCron() {
-    this.cronExample.logEverFiveSeconds()
+    this.cronExample.logEverThirtySeconds()
   }
 
-  @Interval(10000)
+  @Interval(600000)
   handleInterval() {
-    console.log('Every 10 sec log')
+    console.log('Every 10 min log using interval')
   }
 
   @Get('/global')

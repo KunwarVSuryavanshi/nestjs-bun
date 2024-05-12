@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { CronExampleModule } from './CronExample/CronExample.module';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { GlobalModule } from './ME/GlobalModule/GlobalModule.module';
+import { QueueingModule } from './Queueing/queueing.module';
 
 @Module({
-  imports: [CronExampleModule, GlobalModule],
+  imports: [CronExampleModule, GlobalModule, QueueingModule],
   controllers: [AppController],
   providers: [AppService],
 })

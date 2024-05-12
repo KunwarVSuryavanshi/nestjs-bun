@@ -10,7 +10,7 @@ export class CronExampleService {
   //   this.globalController.printGlobalService()
   // }
 
-  logEverFiveSeconds() {
-    console.log('**************************************** \n Log every 5 sec executed in Service file. \n**************************************** \n')
+  logEverThirtySeconds() {
+    console.log('\n**************************************** \n Log every 30 sec executed in CronExampleService file. \n**************************************** \n')
   }
 }
