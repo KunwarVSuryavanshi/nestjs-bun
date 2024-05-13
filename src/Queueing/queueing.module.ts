@@ -1,4 +1,4 @@
-import { Module } from "@nestjs/common";
+import { Logger, Module } from "@nestjs/common";
 import { QueueingConsumer } from "./queueing.processor";
 import { QueueingController } from "./queueing.controller";
 import { BullModule } from "@nestjs/bull";
@@ -8,8 +8,9 @@ import { QueueingService } from "./queueing.service";
   imports: [
     BullModule.forRoot({
       redis: {
-        host: 'localhost',
-        port: 6379
+        host: '172.17.0.2',
+        port: 6379,
+        // maxRetriesPerRequest: null
       }
     }),
     BullModule.registerQueue({
@@ -17,7 +18,7 @@ import { QueueingService } from "./queueing.service";
     })
   ],
   controllers: [QueueingController],
-  providers: [QueueingConsumer, QueueingService],
+  providers: [QueueingConsumer, QueueingService, Logger],
   // exports: [QueueingService]
 })
 
