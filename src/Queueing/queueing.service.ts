@@ -37,6 +37,6 @@ export class QueueingService {
 
   addItemToQueue() {
     console.log('AddItemToQueue called', this.handleQueue.client.status)
-    this.handleQueue.add({ myData: 'This string is data for the job' })
+    this.handleQueue.add('addItem', { myData: 'This string is data for the job' })
   }
 }

@@ -7,6 +7,7 @@ import { GlobalModule } from './ME/GlobalModule/GlobalModule.module';
 import { QueueingModule } from './Queueing/queueing.module';
 import { BullBoardInstance, BullBoardModule, InjectBullBoard } from "@bull-board/nestjs";
 import { ExpressAdapter } from '@bull-board/express';
+import { CacheExampleModule } from './CacheExample/cache-example.module';
 @Module({
   imports: [
     CronExampleModule,
@@ -15,7 +16,8 @@ import { ExpressAdapter } from '@bull-board/express';
     BullBoardModule.forRoot({
       route: '/queues',
       adapter: ExpressAdapter
-    })
+    }),
+    CacheExampleModule
   ],
   controllers: [AppController],
   providers: [AppService],

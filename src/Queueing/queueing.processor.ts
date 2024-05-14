@@ -30,7 +30,7 @@ export class QueueingConsumer {
 
   @Process()
   handleQueue(job: Job<unknown>): string {
-    console.log('Consumer called for the addItem queue')
+    console.log('Consumer called for the handleQueue queue')
     return `The job with id - ${job?.id} is being processed having data - ${job?.data}`
   }
 
