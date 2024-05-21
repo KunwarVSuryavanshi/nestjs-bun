@@ -3,18 +3,24 @@ import { QueueingConsumer } from "./queueing.processor";
 import { QueueingController } from "./queueing.controller";
 import { BullModule } from "@nestjs/bull";
 import { QueueingService } from "./queueing.service";
+import { BULL_BOARD_ADAPTER, BullBoardModule } from "@bull-board/nestjs";
+import { BullMQAdapter } from "@bull-board/api/bullMQadapter";
 
 @Module({
   imports: [
     BullModule.forRoot({
       redis: {
-        host: '172.17.0.2',
+        host: '0.0.0.0', // localhost (docker ps)
         port: 6379,
         // maxRetriesPerRequest: null,
       }
     }),
     BullModule.registerQueue({
       name: 'handle_queue'
+    }),
+    BullBoardModule.forFeature({
+      name: 'handle_queue',
+      adapter: BullMQAdapter
     })
   ],
   controllers: [QueueingController],
